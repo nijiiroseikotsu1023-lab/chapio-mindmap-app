@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="theme-color" content="#f6f8fc"/>
-<title>Chapio 思考マップ v1.5.1</title>
+<title>Chapio 思考マップ v1.6</title>
 <style>
 :root{--bg:#f6f8fc;--grid:#dce6f4;--ink:#172033;--muted:#6d7b91;--line:#3b82f6;--node:#fff;--root:#2f4a73;--accent:#2563eb;--warn:#f59e0b;--danger:#ef4444;--ok:#10b981;--cycle:#7c3aed;--panel:#fff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);overflow:hidden}button,input,textarea{font:inherit}.app{height:100%;display:flex;flex-direction:column}.topbar{height:62px;background:#fff;border-bottom:1px solid #dbe3ef;display:flex;align-items:center;gap:8px;padding:8px 10px;z-index:30;overflow-x:auto;white-space:nowrap}.brand{font-weight:800;font-size:18px;margin-right:6px}.btn{border:1px solid #cbd7e8;background:#fff;border-radius:12px;padding:9px 12px;color:#24334b}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.warn{border-color:#f3c16a;background:#fffaf0}.btn.danger{border-color:#f5b7b7;background:#fff5f5;color:#b42318}.btn.small{padding:7px 10px;font-size:14px}.btn:active{transform:scale(.98)}.main{position:relative;flex:1;overflow:hidden}#canvas{position:absolute;inset:0;touch-action:none;background-image:radial-gradient(var(--grid) 1.3px,transparent 1.3px);background-size:26px 26px;background-color:var(--bg)}#world{position:absolute;left:0;top:0;transform-origin:0 0;width:5000px;height:3500px}#links{position:absolute;left:0;top:0;width:5000px;height:3500px;overflow:visible;pointer-events:none}.node{position:absolute;min-width:150px;max-width:280px;padding:10px 12px;border:2px solid #9db8e8;background:#fff;border-radius:16px;box-shadow:0 5px 16px rgba(30,55,90,.08);display:flex;align-items:center;gap:8px;user-select:none;touch-action:none}.node.root{background:var(--root);color:#fff;border-color:#3b82f6}.node.selected{outline:4px solid rgba(245,158,11,.5)}.node.pinned::after{content:"📌";font-size:12px;position:absolute;right:-8px;top:-10px}.node.suggested{border-style:dashed;border-color:var(--warn);background:#fffaf0}.node.archived{opacity:.35;filter:grayscale(.6)}.label{width:100%;min-width:70px;outline:none;font-weight:700;font-size:17px;line-height:1.35;word-break:break-word;cursor:text}.node:not(.root) .label{font-weight:600;color:#24334b}.iconbtn{width:30px;height:30px;border-radius:50%;border:0;display:grid;place-items:center;background:#eaf1fb;color:#21344f;font-weight:800;font-size:20px;flex:0 0 auto}.root .iconbtn{background:#fff;color:#203b64}.hint{position:absolute;left:14px;top:12px;background:rgba(255,255,255,.94);border:1px solid #edf1f7;border-radius:14px;padding:10px 12px;color:#64748b;font-size:13px;z-index:15;max-width:min(92%,700px)}.bottom{position:absolute;left:10px;right:10px;bottom:10px;display:flex;gap:8px;z-index:20;overflow-x:auto;overflow-y:hidden;padding:2px 2px calc(2px + env(safe-area-inset-bottom));scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x}.bottom::-webkit-scrollbar{display:none}.bottom .btn{flex:0 0 auto;white-space:nowrap;min-width:max-content}.toast{position:absolute;left:50%;bottom:82px;transform:translateX(-50%);background:#172033;color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:45;max-width:92%;text-align:center}.toast.show{opacity:1}.panel{position:absolute;right:10px;top:10px;width:min(390px,calc(100% - 20px));max-height:calc(100% - 92px);overflow:auto;background:#fff;border:1px solid #dfe6f0;border-radius:16px;padding:14px;z-index:40;box-shadow:0 12px 30px rgba(23,32,51,.16)}.panel h3{margin:0 0 8px}.panel h4{margin:14px 0 6px}.panel p{margin:6px 0;color:#5f6e84;font-size:14px;line-height:1.5}.panel .row{display:flex;gap:8px;flex-wrap:wrap}.panel textarea{width:100%;min-height:110px;border:1px solid #ccd8e8;border-radius:12px;padding:10px;resize:vertical}.hidden{display:none!important}.badge{display:inline-block;padding:3px 7px;border-radius:999px;font-size:12px;background:#eef4ff;color:#2f5f9f;margin-right:4px}.badge.warn{background:#fff4db;color:#a06400}.badge.red{background:#ffe9e9;color:#b42318}.badge.purple{background:#f1eaff;color:#6d28d9}.finding{border-top:1px solid #edf1f7;padding:9px 0}.finding:first-of-type{border-top:0}.failsafe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#2f4a73;color:#fff;border:3px solid #3b82f6;border-radius:16px;padding:14px 18px;font-weight:800;z-index:3}.status{position:absolute;right:12px;bottom:76px;background:rgba(255,255,255,.9);border:1px solid #e2e8f0;border-radius:10px;padding:6px 9px;font-size:12px;color:#64748b;z-index:10}.mini{font-size:12px;color:#7b8797}.switchrow{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:8px 0}
@@ -14,7 +14,7 @@
 <body>
 <div class="app">
   <div class="topbar">
-    <div class="brand">🌱 <b>Chapio</b> 思考マップ <span style="font-size:12px;color:#70809a">v1.5.1</span></div>
+    <div class="brand">🌱 <b>Chapio</b> 思考マップ <span style="font-size:12px;color:#70809a">v1.6</span></div>
     <button class="btn small" id="newMap">白紙</button>
     <button class="btn small" id="saveLocal">保存</button>
     <button class="btn small" id="exportBtn">書出</button>
@@ -34,13 +34,13 @@
         <div id="nodes"></div>
         <div class="failsafe" id="failsafe">テーマを入力</div>
       </div>
-      <div class="hint">文字をタップ：直接編集 ／ ＋：子枝 ／ ▾：開閉 ／ ノード余白をドラッグ：位置変更＋自動固定 ／ 画面ドラッグ：移動 ／ ピンチ：拡大縮小</div>
+      <div class="hint">文字をタップ：直接編集 ／ ＋：子枝 ／ ▾：開閉 ／ ノード余白をドラッグ：位置変更＋自動固定 ／ 画面ドラッグ：移動 ／ ピンチ：拡大縮小 ／ 循環ループ：3点で一周</div>
       <div class="bottom">
         <button class="btn primary" id="addChild">＋ 子枝</button>
         <button class="btn" id="insertBtn">途中追加</button>
         <button class="btn" id="togglePin">📌 配置固定</button>
         <button class="btn" id="connectBtn">点線関係</button>
-        <button class="btn" id="cycleBtn">循環関係</button>
+        <button class="btn" id="cycleBtn">循環ループ</button>
         <button class="btn warn" id="archiveBtn">剪定/保留</button>
         <button class="btn danger" id="deleteBtn">削除</button>
         <button class="btn" id="undoBtn">↶ 戻す</button>
@@ -56,9 +56,9 @@
 'use strict';
 const $=s=>document.querySelector(s), world=$('#world'), nodesEl=$('#nodes'), svg=$('#links'), canvas=$('#canvas'), toast=$('#toast'), panel=$('#sidePanel'), failsafe=$('#failsafe'), status=$('#status');
 let state, history=[], drag=null, pan=null, pinch=null, linkMode=null;
-const KEY='chapio-mindmap-v15', LEGACY_KEYS=['chapio-mindmap-v14','chapio-mindmap-v13'];
+const KEY='chapio-mindmap-v16', LEGACY_KEYS=['chapio-mindmap-v15','chapio-mindmap-v14','chapio-mindmap-v13'];
 const uid=()=>Math.random().toString(36).slice(2,9);
-function defaultState(){return {version:15,nodes:{root:{id:'root',text:'テーマを入力',x:320,y:340,parent:null,collapsed:false,pinned:false,suggested:false,archived:false,notes:'',lineColor:null}},links:[],selected:'root',panX:0,panY:0,scale:1,meta:{createdAt:Date.now(),updatedAt:Date.now(),rainbow:false}};}
+function defaultState(){return {version:16,nodes:{root:{id:'root',text:'テーマを入力',x:320,y:340,parent:null,collapsed:false,pinned:false,suggested:false,archived:false,notes:'',lineColor:null}},links:[],selected:'root',panX:0,panY:0,scale:1,meta:{createdAt:Date.now(),updatedAt:Date.now(),rainbow:false}};}
 function safeGet(){try{return localStorage.getItem(KEY)}catch(e){return null}}
 function safeSet(v){try{localStorage.setItem(KEY,v);return true}catch(e){return false}}
 function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
@@ -78,7 +78,7 @@ function toggleRainbow(){pushHistory();state.meta=state.meta||{};state.meta.rain
 
 function path(a,b){const ax=a.x+170,ay=a.y+26,bx=b.x,by=b.y+26,c1=ax+(bx-ax)*.42,c2=bx-(bx-ax)*.42;return `M ${ax} ${ay} C ${c1} ${ay}, ${c2} ${by}, ${bx} ${by}`}
 function cyclePath(a,b){const ax=a.x+170,ay=a.y+26,bx=b.x,by=b.y+26,dx=bx-ax,dy=by-ay,span=Math.max(120,Math.hypot(dx,dy)),lift=Math.min(240,Math.max(90,span*.42));const mx=(ax+bx)/2,my=(ay+by)/2-lift;return `M ${ax} ${ay} Q ${mx} ${my}, ${bx} ${by}` }
-function addArrowDefs(){const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');defs.innerHTML='<marker id="arrowCycle" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#7c3aed"/></marker><marker id="arrowRisk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#ef4444"/></marker>';svg.appendChild(defs)}
+function addArrowDefs(){const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');defs.innerHTML='<marker id="arrowCycle" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#7c3aed"/></marker><marker id="arrowCycleGood" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#16a34a"/></marker><marker id="arrowCycleBad" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#dc2626"/></marker><marker id="arrowRisk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#ef4444"/></marker>';svg.appendChild(defs)}
 function render(){
  try{
   failsafe.style.display='none';
@@ -100,7 +100,7 @@ function render(){
    d.addEventListener('pointerdown',startNodeDrag);d.addEventListener('click',()=>select(n.id));nodesEl.appendChild(d);
   });
   Object.values(state.nodes).forEach(n=>{if(!n.parent||hiddenByAncestor(n)||n.archived)return;const p=state.nodes[n.parent];if(!p||hiddenByAncestor(p)||p.archived)return;const q=document.createElementNS('http://www.w3.org/2000/svg','path');q.setAttribute('d',path(p,n));q.setAttribute('fill','none');q.setAttribute('stroke',edgeColor(n));q.setAttribute('stroke-width','4');if(n.suggested)q.setAttribute('stroke-dasharray','8 7');svg.appendChild(q)});
-  state.links.forEach(l=>{const a=state.nodes[l.from],b=state.nodes[l.to];if(!a||!b||hiddenByAncestor(a)||hiddenByAncestor(b)||a.archived||b.archived)return;const q=document.createElementNS('http://www.w3.org/2000/svg','path');q.setAttribute('d',l.kind==='cycle'?cyclePath(a,b):path(a,b));q.setAttribute('fill','none');const color=l.kind==='cycle'?'#7c3aed':l.kind==='risk'?'#ef4444':'#f59e0b';q.setAttribute('stroke',color);q.setAttribute('stroke-width','3');q.setAttribute('stroke-dasharray',l.kind==='cycle'?'':'9 7');if(l.kind==='cycle')q.setAttribute('marker-end','url(#arrowCycle)');if(l.kind==='risk')q.setAttribute('marker-end','url(#arrowRisk)');svg.appendChild(q)});
+  state.links.forEach(l=>{const a=state.nodes[l.from],b=state.nodes[l.to];if(!a||!b||hiddenByAncestor(a)||hiddenByAncestor(b)||a.archived||b.archived)return;const q=document.createElementNS('http://www.w3.org/2000/svg','path');const isCycle=['cycle','cycle-good','cycle-bad'].includes(l.kind);q.setAttribute('d',isCycle?cyclePath(a,b):path(a,b));q.setAttribute('fill','none');const color=l.kind==='cycle-good'?'#16a34a':l.kind==='cycle-bad'?'#dc2626':l.kind==='cycle'?'#7c3aed':l.kind==='risk'?'#ef4444':'#f59e0b';q.setAttribute('stroke',color);q.setAttribute('stroke-width',isCycle?'3.5':'3');q.setAttribute('stroke-dasharray',isCycle?'':'9 7');if(l.kind==='cycle')q.setAttribute('marker-end','url(#arrowCycle)');if(l.kind==='cycle-good')q.setAttribute('marker-end','url(#arrowCycleGood)');if(l.kind==='cycle-bad')q.setAttribute('marker-end','url(#arrowCycleBad)');if(l.kind==='risk')q.setAttribute('marker-end','url(#arrowRisk)');svg.appendChild(q)});
  }catch(e){console.error(e);failsafe.style.display='block'}
 }
 function selectionOnly(){document.querySelectorAll('.node').forEach(el=>el.classList.toggle('selected',el.dataset.id===state.selected))}
@@ -150,7 +150,7 @@ function cycleCandidates(nodes){
    out.push({type:'cycleCandidate',a:a.id,b:b.id,text:`「${a.text}」と「${b.text}」が別経路で似た論点に戻っています。循環・堂々巡りか、統合すべき論点か確認してください。`});
   }
  }
- for(const l of state.links){if(l.kind!=='cycle')continue;const a=state.nodes[l.from],b=state.nodes[l.to];if(a&&b)out.push({type:'cycleExisting',a:a.id,b:b.id,text:`循環関係：「${a.text}」→「${b.text}」が設定されています。悪循環か好循環かを確認してください。`})}
+ for(const l of state.links){if(!['cycle','cycle-good','cycle-bad'].includes(l.kind))continue;const a=state.nodes[l.from],b=state.nodes[l.to];if(a&&b)out.push({type:'cycleExisting',a:a.id,b:b.id,text:`循環関係：「${a.text}」→「${b.text}」が設定されています（${cycleKindLabel(l.kind)}）。`})}
  return out;
 }
 function analysisFindings(){const nodes=Object.values(state.nodes).filter(n=>!n.archived),find=[];for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j],sim=similarity(a.text,b.text);if(sim>=.72&&normalize(a.text)!==''&&a.id!==b.id)find.push({type:'duplicate',a:a.id,b:b.id,score:sim,text:`「${a.text}」と「${b.text}」は重複/近似の可能性`})}
@@ -162,15 +162,52 @@ function descendants(id){const out=[];(function rec(pid){children(pid).forEach(c
 function showArchived(){const arr=Object.values(state.nodes).filter(n=>n.archived);let html='<h3>保留中の枝</h3><p>復帰すると、子枝も元の構造のまま再表示されます。</p>';if(!arr.length)html+='<p>保留中の枝はありません。</p>';arr.forEach(n=>{html+='<div class="finding"><span class="badge warn">保留</span><p>'+escapeHtml(n.text)+'</p><button class="btn small" data-restore="'+escapeHtml(n.id)+'">復帰</button></div>'});html+='<div class="row"><button class="btn small" id="closePanel">閉じる</button></div>';panel.innerHTML=html;panel.classList.remove('hidden');panel.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>restoreArchived(b.dataset.restore));$('#closePanel').onclick=()=>panel.classList.add('hidden')}
 function restoreArchived(id){const n=state.nodes[id];if(!n)return;pushHistory();n.archived=false;state.selected=id;render();save();showArchived();notify('保留から復帰しました')}
 function archiveSelected(){const id=state.selected;if(!id||id==='root')return notify('中心テーマは保留にできません');pushHistory();state.nodes[id].archived=true;state.selected='root';render();save();notify('剪定：保留しました。子枝もまとめて非表示になります')}
+
+function cycleKindLabel(kind){return kind==='cycle-good'?'好循環':kind==='cycle-bad'?'悪循環':'未判定'}
+function cycleKindColor(kind){return kind==='cycle-good'?'緑':kind==='cycle-bad'?'赤':'紫'}
+function chooseCycleKind(){
+ return new Promise(resolve=>{
+  panel.innerHTML='<h3>循環タイプ</h3><p>このループの意味を選んでください。</p><div class="row"><button class="btn small" data-ck="cycle-good">好循環（緑）</button><button class="btn small danger" data-ck="cycle-bad">悪循環（赤）</button><button class="btn small" data-ck="cycle">未判定（紫）</button></div><div class="row" style="margin-top:10px"><button class="btn small" id="cancelCycleKind">キャンセル</button></div>';
+  panel.classList.remove('hidden');
+  panel.querySelectorAll('[data-ck]').forEach(b=>b.onclick=()=>{const k=b.dataset.ck;panel.classList.add('hidden');resolve(k)});
+  $('#cancelCycleKind').onclick=()=>{panel.classList.add('hidden');resolve(null)};
+ })
+}
+function waitForNodeTap(message){
+ return new Promise(resolve=>{
+  notify(message);
+  const h=e=>{
+   const el=e.target.closest('.node');if(!el)return;
+   document.removeEventListener('click',h,true);
+   resolve(el.dataset.id);
+  };
+  setTimeout(()=>document.addEventListener('click',h,true),0);
+ })
+}
+async function createCycleLoop(){
+ if(!state.selected)return notify('始点にする枝を選択してください');
+ const start=state.selected;
+ const kind=await chooseCycleKind();if(!kind)return notify('循環設定をキャンセルしました');
+ const mid=await waitForNodeTap('② 次の枝（経由点）をタップしてください');
+ if(!mid||mid===start)return notify('同じ枝は経由点にできません');
+ const back=await waitForNodeTap('③ 戻り先の枝をタップしてください');
+ if(!back)return;
+ pushHistory();
+ const add=(from,to)=>{if(from===to)return;if(!state.links.some(l=>l.from===from&&l.to===to&&l.kind===kind))state.links.push({from,to,kind})};
+ add(start,mid);add(mid,back);
+ if(back!==start)add(back,start);
+ render();save();
+ notify(`${cycleKindLabel(kind)}を作成しました（${cycleKindColor(kind)}の矢印）`);
+}
 function linkSelected(kind){if(!state.selected)return notify('枝を選択してください');linkMode={from:state.selected,kind};notify(kind==='cycle'?'循環先の枝をタップしてください':'関連づける相手の枝をタップしてください');const h=e=>{const el=e.target.closest('.node');if(!el)return;const to=el.dataset.id;if(to!==linkMode.from){pushHistory();state.links.push({from:linkMode.from,to,kind:linkMode.kind});render();save();notify(kind==='cycle'?'循環関係を追加しました':'点線関係を追加しました')}document.removeEventListener('click',h,true);linkMode=null};setTimeout(()=>document.addEventListener('click',h,true),0)}
 function exportJson(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='chapio-mindmap.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
-function validateIncoming(incoming){if(!incoming||typeof incoming!=='object')throw new Error('JSON形式が不正です');if(!incoming.nodes||typeof incoming.nodes!=='object'||Array.isArray(incoming.nodes))throw new Error('nodesがありません');if(!incoming.nodes.root)throw new Error('中心テーマ(root)がありません');const ids=new Set(Object.keys(incoming.nodes));for(const [id,n] of Object.entries(incoming.nodes)){if(!n||typeof n!=='object')throw new Error('ノード形式が不正です');n.id=id;n.text=typeof n.text==='string'?n.text:'新しい枝';n.x=Number.isFinite(Number(n.x))?Number(n.x):320;n.y=Number.isFinite(Number(n.y))?Number(n.y):340;n.parent=n.parent==null?null:String(n.parent);if(n.parent&&!ids.has(n.parent))throw new Error('親枝が存在しません: '+id);n.collapsed=!!n.collapsed;n.pinned=!!n.pinned;n.suggested=!!n.suggested;n.archived=!!n.archived;n.notes=typeof n.notes==='string'?n.notes:'';n.lineColor=typeof n.lineColor==='string'?n.lineColor:null}incoming.nodes.root.parent=null;incoming.links=Array.isArray(incoming.links)?incoming.links.filter(l=>l&&ids.has(String(l.from))&&ids.has(String(l.to))).map(l=>({from:String(l.from),to:String(l.to),kind:['cycle','risk','suggestion'].includes(l.kind)?l.kind:'suggestion'})):[];incoming.selected=ids.has(String(incoming.selected))?String(incoming.selected):'root';incoming.panX=Number.isFinite(Number(incoming.panX))?Number(incoming.panX):0;incoming.panY=Number.isFinite(Number(incoming.panY))?Number(incoming.panY):0;incoming.scale=Math.max(.35,Math.min(2.2,Number(incoming.scale)||1));incoming.version=15;incoming.meta=incoming.meta&&typeof incoming.meta==='object'?incoming.meta:{createdAt:Date.now()};incoming.meta.rainbow=!!incoming.meta.rainbow;return incoming}
+function validateIncoming(incoming){if(!incoming||typeof incoming!=='object')throw new Error('JSON形式が不正です');if(!incoming.nodes||typeof incoming.nodes!=='object'||Array.isArray(incoming.nodes))throw new Error('nodesがありません');if(!incoming.nodes.root)throw new Error('中心テーマ(root)がありません');const ids=new Set(Object.keys(incoming.nodes));for(const [id,n] of Object.entries(incoming.nodes)){if(!n||typeof n!=='object')throw new Error('ノード形式が不正です');n.id=id;n.text=typeof n.text==='string'?n.text:'新しい枝';n.x=Number.isFinite(Number(n.x))?Number(n.x):320;n.y=Number.isFinite(Number(n.y))?Number(n.y):340;n.parent=n.parent==null?null:String(n.parent);if(n.parent&&!ids.has(n.parent))throw new Error('親枝が存在しません: '+id);n.collapsed=!!n.collapsed;n.pinned=!!n.pinned;n.suggested=!!n.suggested;n.archived=!!n.archived;n.notes=typeof n.notes==='string'?n.notes:'';n.lineColor=typeof n.lineColor==='string'?n.lineColor:null}incoming.nodes.root.parent=null;incoming.links=Array.isArray(incoming.links)?incoming.links.filter(l=>l&&ids.has(String(l.from))&&ids.has(String(l.to))).map(l=>({from:String(l.from),to:String(l.to),kind:['cycle','cycle-good','cycle-bad','risk','suggestion'].includes(l.kind)?l.kind:'suggestion'})):[];incoming.selected=ids.has(String(incoming.selected))?String(incoming.selected):'root';incoming.panX=Number.isFinite(Number(incoming.panX))?Number(incoming.panX):0;incoming.panY=Number.isFinite(Number(incoming.panY))?Number(incoming.panY):0;incoming.scale=Math.max(.35,Math.min(2.2,Number(incoming.scale)||1));incoming.version=16;incoming.meta=incoming.meta&&typeof incoming.meta==='object'?incoming.meta:{createdAt:Date.now()};incoming.meta.rainbow=!!incoming.meta.rainbow;return incoming}
 function importJson(file){const r=new FileReader();r.onload=()=>{try{const parsed=JSON.parse(r.result);const incoming=validateIncoming(parsed);pushHistory();state=incoming;render();save();notify('安全確認して読み込みました')}catch(e){notify('読み込み拒否：'+(e.message||'形式が不正です'))}};r.readAsText(file)}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function aiPayload(){const nodes=Object.values(state.nodes).filter(n=>!n.archived).map(n=>({id:n.id,text:n.text,parent:n.parent,notes:n.notes||'',positionFixed:!!n.pinned,suggested:!!n.suggested}));return {title:state.nodes.root?.text||'思考マップ',nodes,links:state.links,localFindings:analysisFindings(),request:'このマインドマップを、元の意図的配置・親子関係を尊重して分析してください。目的・前提・根拠・選択肢・反証・リスク・相手視点・時間軸・次の行動を確認し、重複、矛盾、思考の欠如、循環/堂々巡り、途中挿入候補、統合候補、剪定候補を提示してください。循環は悪循環/好循環も区別してください。変更は提案として示し、勝手に削除・統合しないでください。'} }
+function aiPayload(){const nodes=Object.values(state.nodes).filter(n=>!n.archived).map(n=>({id:n.id,text:n.text,parent:n.parent,notes:n.notes||'',positionFixed:!!n.pinned,suggested:!!n.suggested}));return {title:state.nodes.root?.text||'思考マップ',nodes,links:state.links,localFindings:analysisFindings(),request:'このマインドマップを、元の意図的配置・親子関係を尊重して分析してください。目的・前提・根拠・選択肢・反証・リスク・相手視点・時間軸・次の行動を確認し、重複、矛盾、思考の欠如、循環/堂々巡り、途中挿入候補、統合候補、剪定候補を提示してください。循環は好循環（緑）・悪循環（赤）・未判定（紫）を区別してください。変更は提案として示し、勝手に削除・統合しないでください。'} }
 async function copyAI(){const text=JSON.stringify(aiPayload(),null,2);try{await navigator.clipboard.writeText(text);notify('AI分析用データをコピーしました')}catch(e){panel.innerHTML='<h3>AI分析用データ</h3><p>下をコピーしてChatGPTに貼り付けてください。</p><textarea id="aiText"></textarea><button class="btn small" id="closePanel">閉じる</button>';panel.classList.remove('hidden');$('#aiText').value=text;$('#closePanel').onclick=()=>panel.classList.add('hidden')}}
 $('#newMap').onclick=()=>{if(confirm('白紙に戻しますか？現在の内容はJSON書出しておくと安心です。')){pushHistory();state=defaultState();render();fit();save()}};
-$('#saveLocal').onclick=()=>{save();notify('この端末に保存しました')};$('#exportBtn').onclick=exportJson;$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=e=>e.target.files[0]&&importJson(e.target.files[0]);$('#auditBtn').onclick=audit;$('#colorBtn').onclick=showColorPanel;$('#rainbowBtn').onclick=toggleRainbow;$('#archivedListBtn').onclick=showArchived;$('#aiCopyBtn').onclick=copyAI;$('#fitBtn').onclick=fit;$('#addChild').onclick=()=>state.selected?addChildNode(state.selected,true):notify('枝を選択してください');$('#insertBtn').onclick=insertBetween;$('#togglePin').onclick=()=>{const n=state.nodes[state.selected];if(!n)return;pushHistory();n.pinned=!n.pinned;render();save();notify(n.pinned?'配置を固定しました':'配置固定を解除しました')};$('#connectBtn').onclick=()=>linkSelected('suggestion');$('#cycleBtn').onclick=()=>linkSelected('cycle');$('#archiveBtn').onclick=archiveSelected;$('#deleteBtn').onclick=()=>{const id=state.selected;if(!id||id==='root')return notify('中心テーマは削除できません');if(!confirm('この枝と子枝を完全削除しますか？「剪定/保留」なら後で戻せます。'))return;pushHistory();const del=[id,...descendants(id)];del.forEach(x=>delete state.nodes[x]);state.links=state.links.filter(l=>!del.includes(l.from)&&!del.includes(l.to));state.selected='root';render();save()};$('#undoBtn').onclick=()=>{if(!history.length)return notify('戻せる履歴がありません');state=JSON.parse(history.pop());render();save()};
+$('#saveLocal').onclick=()=>{save();notify('この端末に保存しました')};$('#exportBtn').onclick=exportJson;$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=e=>e.target.files[0]&&importJson(e.target.files[0]);$('#auditBtn').onclick=audit;$('#colorBtn').onclick=showColorPanel;$('#rainbowBtn').onclick=toggleRainbow;$('#archivedListBtn').onclick=showArchived;$('#aiCopyBtn').onclick=copyAI;$('#fitBtn').onclick=fit;$('#addChild').onclick=()=>state.selected?addChildNode(state.selected,true):notify('枝を選択してください');$('#insertBtn').onclick=insertBetween;$('#togglePin').onclick=()=>{const n=state.nodes[state.selected];if(!n)return;pushHistory();n.pinned=!n.pinned;render();save();notify(n.pinned?'配置を固定しました':'配置固定を解除しました')};$('#connectBtn').onclick=()=>linkSelected('suggestion');$('#cycleBtn').onclick=createCycleLoop;$('#archiveBtn').onclick=archiveSelected;$('#deleteBtn').onclick=()=>{const id=state.selected;if(!id||id==='root')return notify('中心テーマは削除できません');if(!confirm('この枝と子枝を完全削除しますか？「剪定/保留」なら後で戻せます。'))return;pushHistory();const del=[id,...descendants(id)];del.forEach(x=>delete state.nodes[x]);state.links=state.links.filter(l=>!del.includes(l.from)&&!del.includes(l.to));state.selected='root';render();save()};$('#undoBtn').onclick=()=>{if(!history.length)return notify('戻せる履歴がありません');state=JSON.parse(history.pop());render();save()};
 try{let saved=safeGet();if(!saved){for(const k of LEGACY_KEYS){try{saved=localStorage.getItem(k)}catch(e){}if(saved)break}}state=saved?validateIncoming(JSON.parse(saved)):defaultState();save()}catch(e){state=defaultState();save()}
 render();if(state.meta&&state.meta.rainbow)$('#rainbowBtn').textContent='🌈 虹色ON';setTimeout(()=>{if(!safeGet())fit()},120);
 })();
