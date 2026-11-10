@@ -15,16 +15,19 @@
 - Reject prototype-pollution keys and rebuild accepted state in a null-prototype node dictionary.
 - Preserve corrupt or oversized saved data instead of overwriting it; start with a temporary safe map and show a recovery status.
 - Roll back an imported map if `localStorage` persistence fails; report file read errors.
+- Freeze a corrupt primary storage key and route all subsequent editing/saving to a separate recovery key.
+- Apply the same 2 MiB serialization limit to normal editing, saving, export, import and startup reload; bound normal node/link creation and coordinates.
+- Run the security regression test automatically for pull requests with a read-only GitHub Actions token.
 
 ## Verification
 
 - Browser smoke test: node create/edit, save, reload persistence, three-point cycle creation and AI-copy action passed.
 - Static checks: no remote scripts, `eval`, `Function` constructor or common API secrets; `git diff --check` passed.
-- `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links and prototype pollution. PASS with Node.js v24.22.2 on 2026-11-10.
+- `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links, prototype pollution, export/reload compatibility, serialization limits and corrupt-primary recovery isolation. PASS with Node.js v24.22.2 on 2026-11-10.
 
 ## Residual risks
 
-- Full automated drag/touch/pinch and file-chooser tests remain to be run in CI or a Node-enabled workstation.
+- Full automated drag/touch/pinch and file-chooser tests remain manual; core persistence and validation paths are covered at the function level.
 - Similarity analysis is quadratic in visible node count. Imports are capped at 2,000 nodes, but AI-check can still be slow on very large legitimate maps; a lower interactive-analysis cap or worker is recommended later.
 - Undo keeps up to 80 full snapshots and can consume substantial memory on large maps. A byte budget or patch-based history is recommended later.
 - The single-file app uses inline JavaScript, so a strict nonce/hash-based CSP would require a larger packaging change.
