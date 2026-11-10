@@ -16,6 +16,9 @@
 - Preserve corrupt or oversized saved data instead of overwriting it; start with a temporary safe map and show a recovery status.
 - Roll back an imported map if `localStorage` persistence fails; report file read errors.
 - Freeze a corrupt primary storage key and route all subsequent editing/saving to a separate recovery key.
+- Load a valid recovery record when it is the only remaining key, without recreating or changing the primary key.
+- Replace recursive descendant traversal with an iterative walk and roll back editing, deletion, undo and other common mutations when saving fails.
+- Add user-initiated speech input and explicit copy/open handoff for ChatGPT, Gemini and Claude; map data is never sent automatically.
 - Apply the same 2 MiB serialization limit to normal editing, saving, export, import and startup reload; bound normal node/link creation and coordinates.
 - Run the security regression test automatically for pull requests with a read-only GitHub Actions token.
 
