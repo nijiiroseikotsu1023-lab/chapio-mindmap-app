@@ -18,13 +18,15 @@
 - Freeze a corrupt primary storage key and route all subsequent editing/saving to a separate recovery key.
 - Load a valid recovery record when it is the only remaining key, without recreating or changing the primary key.
 - Replace recursive descendant traversal with an iterative walk and roll back editing, deletion, undo and other common mutations when saving fails.
-- Add user-initiated speech input and explicit copy/open handoff for ChatGPT, Gemini and Claude; map data is never sent automatically.
+- Add user-initiated speech input with an editable confirmation step and explicit copy/open handoff for ChatGPT, Gemini and Claude; canceling speech confirmation changes no data and map data is never sent automatically.
+- Restore pan and zoom when `fit()` cannot persist its calculated viewport.
 - Apply the same 2 MiB serialization limit to normal editing, saving, export, import and startup reload; bound normal node/link creation and coordinates.
 - Run the security regression test automatically for pull requests with a read-only GitHub Actions token.
 
 ## Verification
 
 - Browser smoke test: node create/edit, save, reload persistence, three-point cycle creation and AI-copy action passed.
+- Browser E2E: forced `QuotaExceededError` restored the pre-fit pan/zoom, while drag and synthetic pinch persisted normally; speech review/cancel left storage unchanged and edited confirmation persisted only after approval.
 - Static checks: no remote scripts, `eval`, `Function` constructor or common API secrets; `git diff --check` passed.
 - `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links, prototype pollution, export/reload compatibility, serialization limits, corrupt-primary recovery isolation and recovery-key restart. PASS with Node.js v24.22.2 on 2026-11-10.
 
