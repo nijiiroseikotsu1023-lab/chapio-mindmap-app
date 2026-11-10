@@ -20,7 +20,7 @@
 
 - Browser smoke test: node create/edit, save, reload persistence, three-point cycle creation and AI-copy action passed.
 - Static checks: no remote scripts, `eval`, `Function` constructor or common API secrets; `git diff --check` passed.
-- `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links and prototype pollution. It was added but not run locally because Node.js is unavailable in the execution environment.
+- `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links and prototype pollution. PASS with Node.js v24.22.2 on 2026-11-10.
 
 ## Residual risks
 
