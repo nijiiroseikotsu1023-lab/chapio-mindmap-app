@@ -27,6 +27,7 @@
 
 - Browser smoke test: node create/edit, save, reload persistence, three-point cycle creation and AI-copy action passed.
 - Browser E2E: forced `QuotaExceededError` restored the pre-fit pan/zoom, while drag and synthetic pinch persisted normally; speech review/cancel left storage unchanged and edited confirmation persisted only after approval.
+- Mobile node controls use 44 px touch targets; drag, pan, wheel zoom and pinch restore their prior state when persistence fails.
 - Static checks: no remote scripts, `eval`, `Function` constructor or common API secrets; `git diff --check` passed.
 - `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links, prototype pollution, export/reload compatibility, serialization limits, corrupt-primary recovery isolation and recovery-key restart. PASS with Node.js v24.22.2 on 2026-11-10.
 
