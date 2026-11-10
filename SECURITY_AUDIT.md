@@ -19,6 +19,7 @@
 - Load a valid recovery record when it is the only remaining key, without recreating or changing the primary key.
 - Replace recursive descendant traversal with an iterative walk and roll back editing, deletion, undo and other common mutations when saving fails.
 - Add user-initiated speech input with an editable confirmation step and explicit copy/open handoff for ChatGPT, Gemini and Claude; canceling speech confirmation changes no data and map data is never sent automatically.
+- Diagnose Web Speech on Safari and iOS Chrome with timestamped lifecycle events, specific error codes, explicit states, duplicate-start protection and a 15-second timeout. Diagnostic logs exclude transcripts and map content; late events after timeout are ignored.
 - Restore pan and zoom when `fit()` cannot persist its calculated viewport.
 - Apply the same 2 MiB serialization limit to normal editing, saving, export, import and startup reload; bound normal node/link creation and coordinates.
 - Run the security regression test automatically for pull requests with a read-only GitHub Actions token.
@@ -27,6 +28,7 @@
 
 - Browser smoke test: node create/edit, save, reload persistence, three-point cycle creation and AI-copy action passed.
 - Browser E2E: forced `QuotaExceededError` restored the pre-fit pan/zoom, while drag and synthetic pinch persisted normally; speech review/cancel left storage unchanged and edited confirmation persisted only after approval.
+- Mock Web Speech regression: normal event order, `service-not-allowed`, sanitized messages, duplicate start, timeout and post-timeout late results passed without placing recognized text in diagnostics or changing the map/storage fixture.
 - Mobile node controls use 44 px touch targets; drag, pan, wheel zoom and pinch restore their prior state when persistence fails.
 - Static checks: no remote scripts, `eval`, `Function` constructor or common API secrets; `git diff --check` passed.
 - `security-tests.mjs` covers valid import, parent cycles, oversized strings, invalid coordinates, excessive links, prototype pollution, export/reload compatibility, serialization limits, corrupt-primary recovery isolation and recovery-key restart. PASS with Node.js v24.22.2 on 2026-11-10.
